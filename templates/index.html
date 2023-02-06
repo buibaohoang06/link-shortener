@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veart Link Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic);
+    </style>
+    <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg p-4">
+        <div class="container p-4">
+            <a class="navbar-brand" href="/">Veart Link Shortener</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#docs">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#help">Về Veart</a>
+                    </li>
+                </ul>
+            </div>
+            <span>Link càng ngắn. Đời càng ấm no.</span>
+        </div>
+    </nav>
+    <div class="container text-center p-3" id="intro">
+        <h1>Giúp mọi người. Chỉ từ rút gọn link.</h1>
+        <div class="input-field-container">
+            <input type="text" id="input-field" placeholder="Link bạn cần rút gọn.">
+        </div>
+        <button class="btn btn-success" onclick="shortenLink()">Rút gọn!</button>
+    </div>
+    <section id="docs" class="container bg-light p-4">
+        <h3 class="text-center">Bạn cũng là nhà phát triển?</h3>
+        <p class="text-center">Bạn cũng có thể dùng API của chúng tôi!</p>
+        <p>Code bằng Python</p>
+        <pre><code class="language-python">
+            import requests
+
+            link = "https://google.com"
+
+            r = requests.post(f'https://veart.co/shorten_link?original={link}')
+            
+            res = r.json()
+        </code></pre>
+        <p>Thành công</p>
+        <pre><code class="lang-json">
+            {
+                "status": "success",
+                "url": "your-shortened-url-slug"
+            }
+        </code></pre>
+        <p>Unauthorized</p>
+        <pre><code class="lang-json">
+            {
+                "status": "danger",
+                "url": "unauthorized-code"
+            }
+        </code></pre>
+        <p>Báo lỗi - Vui lòng liên hệ Admin nếu trường hợp này xảy ra</p>
+        <pre><code class="lang-json">
+            {
+                "status": "danger",
+                "url": "error-description"
+            }
+        </code></pre>
+    </section>
+    <section id="help" class="container bg-light p-4">
+        <h3 class="text-center">Về Veart Link Shortener</h3>
+        <p class="text-center">
+            Veart Link Shortener là một trình làm ngắn link nhưng mỗi lần bạn dùng link của chúng mình, 2/3 số tiền đó sẽ được từ thiện vào quỹ Mặt trận Tổ quốc Việt
+            Nam – Ban Cứu trợ TW và UNICEF. Phần còn lại sẽ được sử dụng vào mục đích bảo trì dịch vụ.
+        </p>
+        <h3 class="text-center">Nó hoạt động như thế nào?</h3>
+        <p class="text-center">
+            Đầu tiên bạn hãy rút gọn 1 link qua trình rút gọn bên trên. Sau đó link của bạn sẽ dẫn sang một trang chuyển tiếp của mình để hiện quảng cáo của Google AdSense và Adsterra. Số tiền kiếm được từ những nguồn quảng cáo đấy sẽ được thống kê hàng tháng và quyên góp cho những tổ chức nói trên.
+        </p>
+        <h3 class="text-center">Mình có phải trả phí để dùng dịch vụ của bạn không?</h3>
+        <p class="text-center">
+            Dịch vụ của chúng mình 100% là free. Nếu các bạn nào có nhu cầu có link rút gọn đặc biệt liên lạc với mình qua admin@veart.co nhé! Nếu bạn muốn donate, các bạn có thể donate vào <br> (0904177537 MBBank BUI BAO HOANG) <br> hoặc chuyển Bitcoin vào <br> bc1qd8rn9n228rkda2rpue2zmr6z49ngrcxkcqtqv3 
+        </p>
+    </section>
+    <footer class="container p-4 text-center">
+        Made with ❤️ by <a href="https://lunarweb.xyz">Lunarweb Agency</a>
+    </footer>
+    <script>
+        function shortenLink(){
+            let content = document.getElementById('input-field').value
+            if (content != ""){
+                fetch(`/shorten_link?original=${content}`, {
+                    method: "post"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    Swal.fire(
+                        'Link rút gọn',
+                        window.location.host + '/l/' + data.url,
+                        'success'
+                    )
+                })
+                document.getElementById('input-field').innerText = ""
+            }
+            else {
+                Swal.fire(
+                    'Lỗi',
+                    'Bạn chưa nhập link',
+                    'error'
+                )
+            }
+        }
+    </script>
+</body>
+</html>

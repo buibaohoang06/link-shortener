@@ -1,0 +1,73 @@
+* {
+    font-family: 'Roboto', serif;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    background: rgb(238,174,202);
+    background: linear-gradient(213deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+}
+
+nav>div {
+    background-color: white;
+    margin: 20px;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.input-field-container {
+    position: relative;
+    margin: 30px 0;
+}
+
+input[type="text"] {
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 10px;
+    transition: border-bottom 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: 2px solid #5d5d5d;
+}
+
+label[for="input-field"] {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 16px;
+    color: #ddd;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus~label[for="input-field"],
+input[type="text"]:not(:placeholder-shown)~label[for="input-field"] {
+    top: -20px;
+    font-size: 12px;
+    color: #5d5d5d;
+}
+#docs{
+    margin-top: 100px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+#help{
+    margin-top: 100px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    margin-bottom: 100px;
+}
