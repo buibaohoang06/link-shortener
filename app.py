@@ -3,8 +3,22 @@ from flask_sqlalchemy import SQLAlchemy
 import string
 import random
 from flask_cors import CORS
-from urllib.request import urlopen
+import requests
 from bs4 import BeautifulSoup
+
+def get_title(url): 
+    # making requests instance
+    reqs = requests.get(url, headers={"user-agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0"})
+    
+    # using the BeautifulSoup module
+    soup = BeautifulSoup(reqs.text, 'html.parser')
+    
+    # displaying the title
+    print("Title of the website is : ")
+    title = ""
+    for i in soup.find_all('title'):
+        title = i.get_text()
+    return title
 
 def generate_random_string(length=9):
     characters = string.ascii_lowercase
@@ -43,8 +57,7 @@ def shorten_link():
                 continue
         link = Links()
         #Process link
-        soup = BeautifulSoup(urlopen(request.args.get('original')))
-        link.title = soup.title.get_text()
+        link.title = get_title(request.args.get('original'))
         link.origin = request.args.get('original')
         link.output = random_url
         db.session.add(link)
