@@ -51,7 +51,7 @@
         <div class="input-field-container">
             <input type="text" id="input-field" placeholder="Link bạn cần rút gọn.">
         </div>
-        <button class="btn btn-success" onclick="shortenLink()">Rút gọn!</button>
+        <button class="btn btn-success" onclick="shortenLink()" id="submit-button">Rút gọn!</button>
     </div>
     <section id="docs" class="container bg-light p-4">
         <h3 class="text-center">Bạn cũng là nhà phát triển?</h3>
@@ -108,20 +108,36 @@
     </footer>
     <script>
         function shortenLink(){
-            let content = document.getElementById('input-field').value
+            let content = document.getElementById('input-field').value;
+            let button = document.getElementById('submit-button');
             if (content != ""){
+                button.disabled = true;
+                button.innerHTML = `
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Đang tải...
+                `
                 fetch(`/shorten_link?original=${content}`, {
                     method: "post"
                 })
                 .then(res => res.json())
                 .then(data => {
-                    Swal.fire(
-                        'Link rút gọn',
-                        window.location.host + '/l/' + data.url,
-                        'success'
-                    )
+                    if (data.status == "danger"){
+                        Swal.fire(
+                            'Có lỗi',
+                            data.error,
+                            'error'
+                        )
+                    } else {
+                        Swal.fire(
+                            'Link rút gọn',
+                            window.location.host + '/l/' + data.url,
+                            'success'
+                        )
+                    }
+                    button.disabled = false;
+                    button.innerText = "Rút gọn!"
                 })
-                document.getElementById('input-field').innerText = ""
+                document.getElementById('input-field').value = ""
             }
             else {
                 Swal.fire(
