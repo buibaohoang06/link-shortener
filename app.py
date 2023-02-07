@@ -26,14 +26,14 @@ def generate_random_string(length=9):
 
 #Initialize App
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "testkey"
+app.config['SECRET_KEY'] = "qwujhdiuhei2uhd9283hdiuj2hnd"
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://buibaohoang06:Jubm6dXk7BOG@ep-shy-queen-526375.ap-southeast-1.aws.neon.tech/neondb"
 
 #Cors
 CORS(app)
 
 #Models
-db = SQLAlchemy(app)
+db = SQLAlchemy(app, engine_options={"pool_pre_ping": True})
 
 class Links(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
