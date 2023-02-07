@@ -78,5 +78,6 @@ def redirect(short: str):
     try:
         link = Links.query.filter_by(output=short).first()
     except Exception as e:
+        print(str(e))
         return abort(404)
     return render_template('redirect.html', link=link.origin, title=link.title)
