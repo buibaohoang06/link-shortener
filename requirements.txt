@@ -3,3 +3,4 @@ flask-sqlalchemy
 flask-cors
 bs4
 gunicorn
+requests
