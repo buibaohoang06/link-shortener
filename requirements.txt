@@ -4,3 +4,4 @@ flask-cors
 bs4
 gunicorn
 requests
+psycopg2-binary
