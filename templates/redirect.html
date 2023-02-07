@@ -17,12 +17,12 @@
 </head>
 <body>
     <div id="content" class="container text-center p-4">
-        <h3>Bạn sẽ sớm được chuyển đến đích.</h3>
+        <h3>Bạn sẽ được chuyển đến đích trong 5s.</h3>
         <p>Tạo link rút gọn của bạn ở <a href="https://veart.co">veart.co</a></p>
     </div>
     <script>
         window.onload = () => {
-            setTimeout(function(){window.location.replace('{{ link }}')}, 3000)
+            setTimeout(function(){window.location.replace('{{ link }}')}, 5000)
         }
     </script>
     <script type="text/javascript">
