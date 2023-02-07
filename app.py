@@ -80,6 +80,3 @@ def redirect(short: str):
     except Exception as e:
         return abort(404)
     return render_template('redirect.html', link=link.origin, title=link.title)
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=80)
